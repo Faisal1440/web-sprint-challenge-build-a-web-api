@@ -13,6 +13,6 @@ I need this code, but don't know where, perhaps should make some middleware, don
 Go code!
 */
 const server = require("./server");
-const port = 6000
+const port = 8000
 server.listen(port, () => 
 console.log(`\n SERVER LIVE ON PORT: ${port} \n`));
