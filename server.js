@@ -1,10 +1,10 @@
 const express = require("express");
-const actionRouter = require("./routes/actions-Router");
+const actionsRouter = require("./routes/actions-Router");
 
 const server = express();
 server.use(express.json());
 
 
-server.use("/api/Action", actionRouter);
+server.use("/api/Action", actionsRouter);
 
 module.exports = server;
