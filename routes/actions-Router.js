@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Actions = require("../data/helpers/actionModel");
 
-//GET REQUEST 
+//GET REQUEST _______________________________
 router.get("/", (req, res) => {
     Actions.get()
       .then((allActions) => {
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
     });
   });
 
-  //GET BY ID 
+  //GET BY ID ____________________________________-  
   router.get("/:id", (req, res) => {
     Projects.getProjectActions(req.params.id)
       .then(projectsActions => {
@@ -36,5 +36,21 @@ router.get("/", (req, res) => {
       });
 });
 
+// PUT ____________
+
+router.put("/:id", (req, res) => {
+  Actions.update(req.params.id, req.body)
+    .then(updated => {
+      if (!updated) {
+        res.status(404).json({ message: "Could not edit, nonexsistant." });
+      } else {
+        res.status(200).json(updated);
+      }
+    })
+    .catch(error => {
+      console.log(error.message);
+      res.status(500).json({ message: "Update Failed." });
+  });
+});
 
   module.exports = router;
