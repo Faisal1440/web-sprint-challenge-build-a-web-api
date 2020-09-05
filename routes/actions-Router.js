@@ -16,6 +16,25 @@ router.get("/", (req, res) => {
     });
   });
 
+  //GET BY ID 
+  router.get("/:id", (req, res) => {
+    Projects.getProjectActions(req.params.id)
+      .then(projectsActions => {
+        if (projectsActions.length === 0) {
+          return res.status(404).json({
+          errorMessage: "user id does not exist"
+          });
+        } else {
+          return res.status(200).json(projectsActions);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        return res.status(500).json({
+          errorMessage: "The project information could not be found."
+        });
+      });
+});
 
 
   module.exports = router;
